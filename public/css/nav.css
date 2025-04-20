@@ -1,0 +1,39 @@
+:root {
+    --navbackground: #2C3E50;          
+}
+  
+nav{
+    display: flex;
+    padding: .5rem;
+    width: 100vw;
+    background-color: var(--navbackground);
+}
+
+nav a{
+    color: var(--link);
+    padding: .4rem .2rem;
+    transition: color .2s ease-in;
+}
+
+nav a:hover{
+    color: var(--hover);
+    animation: scale .2s ease-in-out;
+}
+
+@keyframes scale{
+    0%{
+        scale: 1;
+    }
+    25%{
+        scale: 1.05;
+    }
+    50%{
+        scale: 1.1;
+    }
+    75%{
+        scale: 1.05;
+    }
+    100%{
+        scale: 1;
+    }
+}

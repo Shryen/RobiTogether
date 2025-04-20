@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #F9F9F7;                
+    --text: #3C3C3C;                    
+    --link: #4A90E2;                     
+    --hover: #50E3C2;                    
+    --card-background: #FFFFFF;          
+    --card-background-hover: #EBF5FF;     
+    --feed-page-background: #FFFFFF;      
+
+    --border-radius: 10px;                
+    --cardshadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+  
+/*
+* Body start
+*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 16pt;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+/*
+* Body ends
+*/
+
+/*
+* Link starts
+*/
+
+a{
+    color: var(--link);
+    transition: color .3s ease-in;
+}
+
+a:hover{
+    color: var(--hover);
+}
+
+/*
+* Link ends
+*/
+
+/*
+* Feed Start
+*/
+
+.feeds{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.feeds a:hover{
+    color: var(--link);
+}
+
+/* Card */
+
+.feeds-card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: fit-content;
+    padding: 1rem .8rem;
+    background-color: var(--card-background);
+    transition: all .3s ease-in;
+}
+
+.feeds-card:hover{
+    background-color: var(--cardbackground-hover);
+    box-shadow: var(--cardshadow);
+}
+
+/* Page */
+.feed-page{
+    display: grid;
+    width: 800px;
+    grid-template-columns: 200px 1fr;
+    border: 1px solid black;
+    padding: 1rem;
+    box-shadow: var(--cardshadow);
+}
+
+.feed-page-side{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding-top: .5rem;
+}
+
+.feed-page-side .time{
+    font-size: 12pt;
+    font-style: italic;
+}
+
+.feed-page-side .author{
+    font-size: 12pt;
+    color: #7FDBFF;
+}
+
+.feed-page-content .title{
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: .5rem;
+}
+
+.feed-page-content .go-back{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.feed-page-content a:first-child{
+    width: fit-content;
+    margin-top: 3rem;
+}
+
+/*
+* Feed end
+*/
