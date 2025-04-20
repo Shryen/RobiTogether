@@ -12,7 +12,9 @@ class FeedsController extends Controller
      */
     public function index()
     {
+        // SELECT * from Feeds
         $feeds = Feeds::all();
+        // view('elérési útvonal', [ 'változónév' => 'érték' ])
         return view('feeds.index', [
             'feeds' => $feeds
         ]);
