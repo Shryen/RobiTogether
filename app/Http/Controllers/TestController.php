@@ -15,4 +15,14 @@ class TestController extends Controller
             'test' => $user
         ]);
     }
+
+    public function validationTest(Request $request)
+    {
+        $validation = $request->validate([
+            'number1' => 'required',
+            'number2' => 'required'
+        ]);
+        $sum = $validation['number1'] + $validation['number2'];
+        return $sum;
+    }
 }

@@ -14,6 +14,8 @@ Route::get('/dashboard', [UserController::class, 'dashboard']);
  */
 
 Route::get('/test', [TestController::class, 'test']);
+Route::post('/test/validation', [TestController::class, 'validationTest']);
+
 
 /*
  *   Authentikáció
