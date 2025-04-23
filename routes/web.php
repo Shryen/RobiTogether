@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedsController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\IsAdmin;
@@ -35,3 +36,11 @@ Route::post('/feeds/store', [FeedsController::class, 'store'])->middleware(IsAdm
 Route::get('/feed/{id}/edit', [FeedsController::class, 'edit'])->middleware(IsAdmin::class);
 Route::put('/feed/{id}', [FeedsController::class, 'update'])->middleware(IsAdmin::class);
 Route::delete('/feed/{id}', [FeedsController::class, 'destroy'])->middleware(IsAdmin::class);
+
+/*
+ * Üzenetek
+*/
+
+Route::get('/messages', [MessagesController::class, 'index']);
+Route::get('/messages/create', [MessagesController::class, 'create']);
+Route::post('/messages/store', [MessagesController::class, 'Store']);

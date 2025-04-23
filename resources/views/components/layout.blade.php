@@ -11,7 +11,8 @@
 <body>
     <nav>
         <a href="/">Home Page</a>
-        <a href="/feeds">Feeds</a>
+        <a href="/feeds">Hirfolyam</a>
+        <a href="/messages">Üzenetek</a>
     </nav>
     <div class="content">
         {{$slot}}
