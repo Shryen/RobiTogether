@@ -7,8 +7,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [UserController::class, 'index']);
-Route::get('/dashboard', [UserController::class, 'dashboard']);
+Route::get('/', [UserController::class, 'index'])->middleware('guest')->name('login');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
 
 /*
  *   Test
@@ -39,8 +39,9 @@ Route::delete('/feed/{id}', [FeedsController::class, 'destroy'])->middleware(IsA
 
 /*
  * Üzenetek
-*/
+ */
 
 Route::get('/messages', [MessagesController::class, 'index']);
 Route::get('/messages/create', [MessagesController::class, 'create']);
 Route::post('/messages/store', [MessagesController::class, 'Store']);
+Route::get('/message/{id}', [MessagesController::class, 'show']);

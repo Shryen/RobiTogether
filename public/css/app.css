@@ -196,7 +196,27 @@ a:hover{
     border-radius: 2px;
 }
 
+.message-card{
+    border: 1px solid black;
+    padding: .6rem .4rem;
+    min-width: 200px;
+    margin-block: .5rem;
+    border-radius: 10px;
+}
 
+.message-time{
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.message-sender{
+    font-weight: 600;
+}
+
+.message-content{
+    overflow-x: hidden;
+}
 
 /*
 * Messages end

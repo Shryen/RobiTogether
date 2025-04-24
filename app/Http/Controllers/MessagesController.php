@@ -15,8 +15,8 @@ class MessagesController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $messages = Messages::where('sender', $user->name)
-            ->orWhere('receiver', $user->name)
+        $messages = Messages::where('sender_id', $user->id)
+            ->orWhere('receiver_id', $user->id)
             ->orderBy('created_at', 'asc')
             ->get();
         return view('messages.index', [
@@ -38,8 +38,8 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $message = $request->validate([
-            'sender' => 'required|max:255',
-            'receiver' => 'required|max:255',
+            'sender_id' => 'required',
+            'receiver_id' => 'required',
             'content' => 'required|max:255'
         ]);
         Messages::create($message);
@@ -49,9 +49,12 @@ class MessagesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Messages $messages)
+    public function show($id)
     {
-        //
+        $message = Messages::where('receiver_id');
+        return view('messages.show', [
+            'message' => $message
+        ]);
     }
 
     /**
