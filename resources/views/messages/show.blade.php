@@ -17,11 +17,13 @@
                     <p>{{ $message->content }}</p>
                 </div>
             </div>
-        
         @endforeach
-        <form method="post" action="/message/{{$id}}}/sendmessage" class="chat-box">
-            <input class="chat-text-box" type="text" name="chat">
+        <form method="post" action="/message/{{$id}}/send" class="chat-box">
+            @csrf
+            <input class="chat-text-box" type="text" name="content">
             <input class="chat-button" type="submit" value=">">
+            <input type="hidden" name="sender_id" value="{{auth()->id()}}">
+            <input type="hidden" name="receiver_id" value="{{$id}}">
         </form>
     </div>
 </x-layout>
