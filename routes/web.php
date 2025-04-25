@@ -46,3 +46,10 @@ Route::get('/messages/create', [MessagesController::class, 'create']);
 Route::post('/messages/store', [MessagesController::class, 'Store']);
 Route::get('/message/{id}', [MessagesController::class, 'show']);
 Route::post('/message/{id}/send', [MessagesController::class, 'store']);
+
+/*
+ * Admin
+ */
+Route::get('/admin', function () {
+    return view('admin');
+});
