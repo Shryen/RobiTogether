@@ -218,6 +218,70 @@ a:hover{
     overflow-x: hidden;
 }
 
+.chat-content{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    border: 1px solid black;
+    min-width: 600px;
+    border-radius: 10px;
+    padding: .75rem;
+}
+
+.chat-box{
+    display: flex;
+    width: 100%;
+}
+
+.chat-text-box{
+    width: 100%;
+    padding: .25rem;
+    margin-top: .2rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.chat-button{
+    padding: .25rem;
+    margin-top: .2rem;
+    border-radius: none;
+    background-color: var(--link);
+    color: whitesmoke;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.chat-text-box:focus{
+    outline: none;
+}
+
+.chat-row{
+    display: flex column;
+    width: 100%;
+    padding: .25rem;
+}
+
+.chat-text{
+    border: 1px solid black;
+    width: fit-content;
+    background-color: var(--card-background);
+    padding: .2rem .6rem;
+    border-radius: 10px;
+    box-shadow: var(--cardshadow);
+}
+
+.chat-text strong{
+    font-size: 12pt;
+}
+
+.chat-time{
+    font-size: 8pt;
+    font-style: italic;
+    font-weight: 200;
+}
+
 /*
 * Messages end
 */

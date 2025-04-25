@@ -15,6 +15,12 @@ nav a{
     transition: color .2s ease-in;
 }
 
+nav p{
+    color: var(--link);
+    padding: .4rem .2rem;
+    transition: color .2s ease-in;
+}
+
 nav a:hover{
     color: var(--hover);
     animation: scale .2s ease-in-out;

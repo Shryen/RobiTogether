@@ -13,6 +13,9 @@
         <a href="/">Home Page</a>
         <a href="/feeds">Hirfolyam</a>
         <a href="/messages">Üzenetek</a>
+        @auth
+            <p> {{ auth()->user()->name }} </p>
+        @endauth
     </nav>
     <div class="content">
         {{$slot}}

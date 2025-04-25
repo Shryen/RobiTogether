@@ -6,6 +6,7 @@ use App\Models\Messages;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class MessagesController extends Controller
 {
@@ -17,10 +18,15 @@ class MessagesController extends Controller
         $user = Auth::user();
         $messages = Messages::where('sender_id', $user->id)
             ->orWhere('receiver_id', $user->id)
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->get();
+        $conversations = $messages->unique(function ($message) {
+            $ids = [$message->sender_id, $message->receiver_id];
+            sort($ids);
+            return implode('-', $ids);
+        });
         return view('messages.index', [
-            'messages' => $messages
+            'messages' => $conversations
         ]);
     }
 
@@ -51,9 +57,20 @@ class MessagesController extends Controller
      */
     public function show($id)
     {
-        $message = Messages::where('receiver_id');
+        $userID = auth()->user()->id;
+        $messages = Messages::where(function ($query) use ($userID, $id) {
+            $query->where('sender_id', $userID)
+                ->where('receiver_id', $id);
+        })->orWhere(function ($query) use ($userID, $id) {
+            $query->where('sender_id', $id)
+                ->where('receiver_id', $userID);
+        })
+            ->orderBy('created_at', 'asc')
+            ->get();
+
         return view('messages.show', [
-            'message' => $message
+            'messages' => $messages,
+            'id' => $id,
         ]);
     }
 
