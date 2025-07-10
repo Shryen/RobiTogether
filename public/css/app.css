@@ -226,6 +226,7 @@ a:hover{
     min-width: 600px;
     border-radius: 10px;
     padding: .75rem;
+    background-color: var(--link);
 }
 
 .chat-box{
@@ -240,21 +241,33 @@ a:hover{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
+    transition: all .2s ease-in;
 }
 
 .chat-button{
     padding: .25rem;
+    min-width: 40px;
     margin-top: .2rem;
     border-radius: none;
-    background-color: var(--link);
-    color: whitesmoke;
+    background-color: var(--background);
+    color: var(--link);
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
+    font-weight: bold;
+    font-size: 16pt;
+    transition: all .2s ease-in;
+    cursor: pointer;
 }
 
-.chat-text-box:focus{
+.chat-button:hover{
+    background-color: var(--link);
+    color: var(--background);
+}
+
+.chat-text-box:focus, .chat-text-box:hover{
     outline: none;
+    box-shadow: 1px 0 10px 1px white;
 }
 
 .chat-row{

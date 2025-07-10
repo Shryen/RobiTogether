@@ -68,12 +68,17 @@
     <title>Bejelentkezés</title>
 </head>
 <body>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    @endif
     <form action="/login" method="POST">
         <h1>Bejelentkezés</h1>
         @csrf
         <div>
-            <label for="email">E-mail</label>
-            <input type="email" name="email">
+            <label for="loginId">Azonositó</label>
+            <input type="text" name="loginId">
         </div>
         <div>
             <label for="password">Jelszó</label>

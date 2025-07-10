@@ -20,8 +20,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role',
         'email',
         'password',
+        'loginId'
     ];
 
     /**
@@ -46,6 +48,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
 
     public function sentMessages()
     {

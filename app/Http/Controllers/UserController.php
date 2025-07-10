@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('login');
@@ -21,48 +18,52 @@ class UserController extends Controller
         return view('dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('register');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'required|max:255'
+            'password' => 'required|max:255',
+            'loginId'
         ]);
+
+        $name = explode(' ', $validated['name']);
+        $nameFirstPart = str_split($name[0], 2);
+        $nameSecondPart = str_split($name[1], 4);
+        $randNum = rand(0, 100);
+
+        $validated['loginId'] = $nameFirstPart[0] . $nameSecondPart[0] . $randNum;
 
         $validated['password'] = Hash::make($validated['password']);
 
-        User::create($validated);
+        User::create([
+            'name' => $validated['name'],
+            'password' => $validated['password'],
+            'loginId' => $validated['loginId']
+        ]);
 
-        return redirect('/dashboard');
+        return back()->with('success', 'Diák sikeresen hozzáadva!, Felhasználónév: ' . $validated['loginId']);
     }
 
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'loginId' => 'required|string',
+            'password' => 'required|string'
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
             return redirect()->intended('dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'Elbasztad a bejelentkezést!'
-        ])->onlyInput('email');
+            'loginId' => 'A megadott adatok nem egyeznek a rekordjainkkal.',
+        ])->onlyInput('loginId');
     }
 
     public function logout(Request $request)
