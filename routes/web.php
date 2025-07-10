@@ -14,7 +14,7 @@ Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth
  *   Test
  */
 
-Route::get('/test', [TestController::class, 'test']);
+Route::get('/test', [TestController::class, 'gradeTest']);
 Route::post('/test/validation', [TestController::class, 'validationTest']);
 
 

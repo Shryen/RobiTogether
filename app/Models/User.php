@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Messages::class, 'receiver_id');
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grades::class);
+    }
+
+    public function subjects()
+    {
+        return $this->hasManyThrough(Subject::class, Grades::class, 'user_id', 'id', 'id', 'subject_id');
+    }
 }

@@ -23,7 +23,7 @@ class IsAdmin
         // if logged in store data in a variable to get name
         $admin = Auth::user();
         // if name is not admin then cannot access page redirect to home page
-        if ($admin->name != "admin") {
+        if ($admin->role != "admin") {
             return redirect('/');
         }
         // if admin let him do what he wants
