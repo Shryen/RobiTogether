@@ -53,3 +53,10 @@ Route::post('/message/{id}/send', [MessagesController::class, 'store']);
 Route::get('/admin', function () {
     return view('admin');
 });
+
+/*
+ * Student
+ */
+
+Route::get('/students', [UserController::class, 'AllStudents']);
+Route::get('/students/{id}', [UserController::class, 'show']);

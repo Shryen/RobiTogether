@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use App\Models\User;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller
@@ -29,7 +28,7 @@ class TestController extends Controller
 
         // fetch grades
         $grades = $user->grades;
-        $subjects = Subject::all();
+        $Subjects = Subject::all();
         $months = [
             'jan',
             'feb',
@@ -54,19 +53,19 @@ class TestController extends Controller
             // associative array, using 2 keys, extra array for appending
             // for example
             /*
-            $gradesBySubjectAndMonth[
-                'Math' => [
-                    'jan' => [5,4],
-                    'feb' => [3,1]
-                 ]
-            ]
+                $gradesBySubjectAndMonth[
+                    'Math' => [
+                        'jan' => [5,4],
+                        'feb' => [3,1]
+                    ]
+                ]
             */
             $gradesBySubjectAndMonth[$subject][$month][] = $grade->grade;
         }
 
         return view('test', [
             'grades' => $grades,
-            'subjects' => $subjects,
+            'Subjects' => $Subjects,
             'months' => $months,
             'gradesByMonth' => $gradesBySubjectAndMonth
         ]);

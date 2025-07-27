@@ -2,7 +2,7 @@
     <h1>Kezelői felület</h1>
     <div class="admin-box">
         <div class="admin-menu">
-            <a href="">Diákok</a>
+            <a href="/students">Diákok</a>
             <a href="">Hiányzások</a>
             <a href="">Jegyek</a>
             <a href="/register">Diák felvétele</a>

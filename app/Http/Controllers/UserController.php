@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class UserController extends Controller
     {
         return view('register');
     }
-    
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -75,12 +76,73 @@ class UserController extends Controller
         return redirect('/');
     }
 
+
+    public function AllStudents()
+    {
+        $Students = User::where('role', 'student')->get();
+        return view('students.students', data: [
+            'students' => $Students
+        ]);
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
+        // Létrehozunk egy változót, Model class segítségével meghívjuk a where functiont első paraméter az oszlop a
+        //  második pedig amit keresünk pl.: id, majd a get() functionnel a végén lekérjük az adatot
+        // A first() function csak egy objektumot fog visszaadni míg a get() egy tömbböt, tömbre most nincs szükségünk
+        $Student = User::where('id', $id)->first();
+        // miután megszereztük a szükséges adatot returnöljük az adott view-t, az első paraméter az elérési útvonal
+        // Mappa + filename a második paraméter az értékek amiket át akarunk adni jelen esetben a student változó
+        // Az adott értéket úgy adjuk át hogy elsőnek elnevezzük a változót, amit meg akarunk hívni a view-ban
+        // utána hozzápárosítjuk az értéket a => operátorral
+        // Például: 'student' => $Student
+        $Grades = $Student->grades;
+        $Subjects = Subject::all();
+        $months = [
+            'Január',
+            'Február',
+            'Március',
+            'Április',
+            'Május',
+            'Június',
+            'Július',
+            'Augusztus',
+            'Szeptember',
+            'Október',
+            'November',
+            'December'
+        ];
 
+        $gradesByMonthAndSubject = [];
+
+        foreach ($Grades as $grade) {
+            // Adunk az asszociatív tömbnek 2 kulcsot month és a subject és egy értéket ami a grade 
+            // A harmadik [] azt jelenti hogy hozzáadjuk a $Grades tömbbön átfutott értékeket
+            // Ehhez az asszociatív tömbhöz
+            /*
+             *   $gradesByMonthAndSubject[
+             *   'Matek' =* 
+             *      'január' = [5,4],
+             *      'február' = [5]
+             *    ];
+             */
+            $Subject = $grade->subject->name;
+            $month = $grade->month;
+            $gradesByMonthAndSubject[$Subject][$month][] = $grade->grade;
+        }
+
+
+
+        return view("Students.show", [
+            'Student' => $Student,
+            'months' => $months,
+            'Subjects' => $Subjects,
+            'Grades' => $Grades,
+            'gradesByMonth' => $gradesByMonthAndSubject
+        ]);
     }
 
     /**

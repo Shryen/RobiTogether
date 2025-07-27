@@ -4,6 +4,7 @@
 @endphp
 <x-layout title="Üzenetek">
     <div class="chat-content">
+        <div style="margin: 0 auto">Chat</div>
         @foreach ($messages as $message)
             @php
                 $thisUser = $message->sender_id === auth()->id();

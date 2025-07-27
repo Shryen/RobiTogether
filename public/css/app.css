@@ -222,11 +222,10 @@ a:hover{
     display: flex;
     flex-direction: column;
     gap: .25rem;
-    border: 1px solid black;
     min-width: 600px;
-    border-radius: 10px;
     padding: .75rem;
-    background-color: var(--link);
+    background-color: rgba(211, 211, 211, 0.422);
+    box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.6);
 }
 
 .chat-box{
@@ -238,22 +237,22 @@ a:hover{
     width: 100%;
     padding: .25rem;
     margin-top: .2rem;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+    margin-right: .05rem;
+    border: none;
     transition: all .2s ease-in;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .chat-button{
     padding: .25rem;
     min-width: 40px;
     margin-top: .2rem;
-    border-radius: none;
     background-color: var(--background);
     color: var(--link);
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
     font-weight: bold;
     font-size: 16pt;
     transition: all .2s ease-in;
@@ -267,7 +266,7 @@ a:hover{
 
 .chat-text-box:focus, .chat-text-box:hover{
     outline: none;
-    box-shadow: 1px 0 10px 1px white;
+    box-shadow: 0 0 3px 1px var(--link)
 }
 
 .chat-row{
@@ -277,9 +276,8 @@ a:hover{
 }
 
 .chat-text{
-    border: 1px solid black;
     width: fit-content;
-    background-color: var(--card-background);
+    background-color: whitesmoke;
     padding: .2rem .6rem;
     border-radius: 10px;
     box-shadow: var(--cardshadow);
@@ -297,4 +295,36 @@ a:hover{
 
 /*
 * Messages end
+*/
+
+/*
+* Student table
+*/
+
+.table{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+        
+.table-cell{
+    padding: 10px 8px;
+    border: 1px solid var(--link);
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+        
+.table-header {
+    font-weight: bold;
+    background-color: var(--link);
+    color: var(--background);
+}
+
+/*
+* Student table end
 */
